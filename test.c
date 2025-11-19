@@ -117,3 +117,8 @@ int main()
 		return (0);
 	}
 }
+
+//image çağır
+// data_addr çağır
+// background boya
+// main içinde image_window çağır

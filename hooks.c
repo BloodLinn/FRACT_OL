@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/18 16:06:21 by aokur             #+#    #+#             */
-/*   Updated: 2025/11/19 18:48:12 by aokur            ###   ########.fr       */
+/*   Created: 2025/11/19 16:29:20 by aokur             #+#    #+#             */
+/*   Updated: 2025/11/19 17:04:44 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int main()
+int	close_window(t_fractol *f)
 {
-	t_fractol	f;
+	mlx_destroy_window(f->mlx, f->win);
+	exit(0);
+	return (0);
+}
 
-	init_fractol(&f);
-	mlx_hook(f.win, 17, 0, close_window,&f);
-	mlx_hook(f.win, 2, 1, key_handler,&f);
-	fill_background(0xFF, &f);
-	mlx_put_image_to_window(f.mlx, f.win, f.img.img, 0, 0);
-	mlx_loop(f.mlx);
+int	key_handler(int keycode, t_fractol *f)
+{
+	if (keycode == 65307)
+		close_window(f);
 	return (0);
 }

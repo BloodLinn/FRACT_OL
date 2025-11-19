@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:46:31 by aokur             #+#    #+#             */
-/*   Updated: 2025/11/18 17:56:52 by aokur            ###   ########.fr       */
+/*   Updated: 2025/11/19 17:56:28 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,30 @@
 #include "libft.h"
 #include "mlx.h"
 
-#define WITDH 800
+#define WIDTH 800
 #define HEIGHT 800
 
-typedef struct s_complex
+typedef struct s_img
 {
-    double  x;
-    double  y;
-}   t_complex;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
+typedef struct s_fractol
+{
+	int		width;
+	int		height;
+	void	*mlx;
+	void	*win;
+	t_img	img;
+}	t_fractol;
+
+void init_fractol(t_fractol *f);
+int close_window(t_fractol *f);
+int	key_handler(int keycode, t_fractol *f);
+void	fill_background(int color, t_fractol *f);
 
 #endif

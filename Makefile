@@ -8,7 +8,7 @@ MLX_DIR = ./minilibx-linux
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX = $(MLX_DIR)/libmlx.a
 
-SRCS = main.c
+SRCS = main.c init.c hooks.c render.c
 OBJS = $(SRCS:.c=.o)
 
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib -lXext -lX11 -lm -lz
