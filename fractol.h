@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:46:31 by aokur             #+#    #+#             */
-/*   Updated: 2025/11/24 19:23:34 by aokur            ###   ########.fr       */
+/*   Updated: 2025/11/24 19:51:55 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int		key_handler(int keycode, t_fractol *f);
 int		close_window(t_fractol *f);
 void	fill_background(int color, t_fractol *f);
 void	ft_draw_cross(int color, t_fractol *f);
+void	ft_draw_square_outline(int color, t_fractol *f);
 
 #endif
