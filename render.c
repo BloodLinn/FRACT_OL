@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:23:37 by aokur             #+#    #+#             */
-/*   Updated: 2025/11/24 19:08:07 by aokur            ###   ########.fr       */
+/*   Updated: 2025/11/24 19:43:54 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,36 +33,27 @@ void	fill_background(int color, t_fractol *f)
 	}
 }
 
-//void	ft_put_pixel(t_fractol *f, int x, int y, int color)
-//{
-//	char *pixel;
+void ft_draw_cross(int color, t_fractol *f)
+{
+	int cx = (f->width / 2) - 100;
+	int cy = (f->height / 2) - 100;
+	int bytepp = f->img.bpp / 8;
+	char	*pixel;
 
-//	if (x < 0 || x >= f->width || y < 0 || y >= f->height)
-//		return;
-
-
-//	pixel = f->img.addr + (y * f->img.line_len) + (x * (f->img.bpp / 8));
-//	*(unsigned int *)pixel = color;
-//}
-
-//void	ft_center_box(int color ,t_fractol *f)
-//{
-//	int x;
-//	int y;
-//	char	*pixel;
-//	int bytepp = f->img.bpp / 8;
-
-//	x = (f->width / 2) - 10;
-//	while(x < (f->width / 2) + 10)
-//	{
-//		y = (f->height / 2) - 10;
-//		while(y < (f->height / 2) + 10)
-//		{
-//			pixel = f->img.addr + (y * f->img.line_len) + (x * bytepp);
-//			*(unsigned int *)pixel = color;
-//			y++;
-//		}
-//		x++;
-//	}
-
-//}
+	while(cx <= (f->width / 2) + 100)
+	{
+		pixel = f->img.addr + (cy * f->img.line_len) + (cx * bytepp);
+		*(unsigned int *)pixel = color;
+		cx++;
+		cy++;
+	}
+	cx = (f->width / 2) + 100;
+	cy = (f->height / 2) - 100;
+	while(cy <= (f->height / 2) + 100)
+	{
+		pixel = f->img.addr + (cy * f->img.line_len) + (cx * bytepp);
+		*(unsigned int *)pixel = color;
+		cx--;
+		cy++;
+	}
+}
