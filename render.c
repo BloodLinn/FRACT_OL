@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:23:37 by aokur             #+#    #+#             */
-/*   Updated: 2025/11/24 18:53:28 by aokur            ###   ########.fr       */
+/*   Updated: 2025/11/24 19:07:21 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,26 @@ void	ft_put_pixel(t_fractol *f, int x, int y, int color)
 
 	pixel = f->img.addr + (y * f->img.line_len) + (x * (f->img.bpp / 8));
 	*(unsigned int *)pixel = color;
+}
+
+void	ft_center_box(int color ,t_fractol *f)
+{
+	int x;
+	int y;
+	char	*pixel;
+	int bytepp = f->img.bpp / 8;
+
+	x = (f->width / 2) - 10;
+	while(x < (f->width / 2) + 10)
+	{
+		y = (f->height / 2) - 10;
+		while(y < (f->height / 2) + 10)
+		{
+			pixel = f->img.addr + (y * f->img.line_len) + (x * bytepp);
+			*(unsigned int *)pixel = color;
+			y++;
+		}
+		x++;
+	}
+
 }
