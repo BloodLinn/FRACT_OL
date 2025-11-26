@@ -6,11 +6,19 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:23:37 by aokur             #+#    #+#             */
-/*   Updated: 2025/11/25 21:28:16 by aokur            ###   ########.fr       */
+/*   Updated: 2025/11/26 05:21:00 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+char	*ft_put_pixel(int x, int y, char	*pixel, int color, t_fractol *f)
+{
+	pixel = f->img.addr + (y * f->img.line_len)
+			+ (x * ((f->img.bpp) / 8));
+	*(unsigned int *)pixel = color;
+	return(pixel);
+}
 
 void	fill_background(int color, t_fractol *f)
 {
@@ -24,104 +32,26 @@ void	fill_background(int color, t_fractol *f)
 		x = 0;
 		while (x < f->width)
 		{
-			pixel = f->img.addr + (y * f->img.line_len)
-			+ (x * ((f->img.bpp) / 8));
-			*(unsigned int *)pixel = color;
+			pixel = ft_put_pixel(x, y, pixel, color, f);
 			x++;
 		}
 		y++;
 	}
 }
 
-void ft_draw_cross(int color, t_fractol *f)
+void	complexip(int x, int y, double *re, double *im, t_fractol *f)
 {
-	int cx = (f->width / 2) - 5;
-	int cy = (f->height / 2) - 5;
-	int bytepp = f->img.bpp / 8;
-	char	*pixel;
+	t_pixelpmoc	p;
 
-	while(cx <= (f->width / 2) + 5)
-	{
-		pixel = f->img.addr + (cy * f->img.line_len) + (cx * bytepp);
-		*(unsigned int *)pixel = color;
-		cx++;
-		cy++;
-	}
-	cx = (f->width / 2) + 5;
-	cy = (f->height / 2) - 5;
-	while(cy <= (f->height / 2) + 5)
-	{
-		pixel = f->img.addr + (cy * f->img.line_len) + (cx * bytepp);
-		*(unsigned int *)pixel = color;
-		cx--;
-		cy++;
-	}
+	p.min_re = -2.0;
+	p.max_re = 1.0;
+	p.min_im = -1.5;
+	p.max_im = 1.5;
+	p.re_range = p.max_re - p.min_re;
+	p.im_range = p.max_im - p.min_im;
+	p.xs = (double)x / f->width;
+	p.ys = (double)y / f->height;
+	*re = p.min_re + p.xs * p.re_range;
+	*im = p.min_im + p.ys * p.im_range;
 }
 
-typedef struct s_kolay
-{
-	int cx;
-	int cy;
-	int start_x;
-	int end_x;
-	int start_y;
-	int end_y;
-	char *pixel;
-} t_kolay;
-
-static void	ft_draw_square_fill(int color, t_fractol *f)
-{
-		t_kolay a;
-		a.cx = f->width / 2;
-		a.cy = f->height / 2;
-		a.start_x = a.cx - 10;
-		a.end_x = a.cx + 10;
-		a.end_y = a.cy + 10;
-		int	bytepp = f->img.bpp / 8;
-
-		while (a.start_x <= a.end_x)
-		{
-			a.start_y = a.cy - 10;
-			while(a.start_y <= a.end_y)
-			{
-				a.pixel = f->img.addr + (a.start_y * f->img.line_len) + (a.start_x * bytepp);
-				*(unsigned int *)a.pixel = color;
-				a.start_y++;
-			}
-			a.start_x++;
-		}
-}
-
-void	ft_draw_square_outline(int color, t_fractol *f)
-{
-	t_kolay a;
-
-	a.cx = f->width / 2;
-	a.cy = f->height / 2;
-	a.start_x = a.cx - 10;
-	a.end_x = a.cx + 10;
-	a.start_y = a.cy - 10;
-	a.end_y = a.cy + 10;
-	int	bytepp = f->img.bpp / 8;
-
-	while(a.start_x <= a.end_x)
-	{
-		a.pixel = f->img.addr + (a.start_y * f->img.line_len) + (a.start_x * bytepp);
-		*(unsigned int *)a.pixel = color;
-		a.pixel = f->img.addr + (a.end_y * f->img.line_len) + (a.start_x * bytepp);
-		*(unsigned int *)a.pixel = color;
-		a.start_x++;
-	}
-	a.start_x = a.cx - 10;
-	while(a.start_y <= a.end_y)
-	{
-		a.pixel = f->img.addr + (a.start_y * f->img.line_len) + (a.start_x * bytepp);
-		*(unsigned int *)a.pixel = color;
-		a.pixel = f->img.addr + (a.start_y * f->img.line_len) + (a.end_x * bytepp);
-		*(unsigned int *)a.pixel = color;
-		a.start_y++;
-	}
-	int check = 1;
-	if (check == 1)
-		ft_draw_square_fill(0x000000, f);
-}
