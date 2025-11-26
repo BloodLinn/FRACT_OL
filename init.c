@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 15:46:50 by aokur             #+#    #+#             */
-/*   Updated: 2025/11/26 06:32:19 by aokur            ###   ########.fr       */
+/*   Updated: 2025/11/26 06:42:02 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ void	init_fractol(t_fractol *f)
 	f->width = WIDTH;
 	f->height = HEIGHT;
 	f->mlx = mlx_init();
+	f->zoom = 1.0;
+	f->shift_x = 0.0;
+	f->shift_y = 0.0;
+	f->max_iter = MAX_ITER;
 	if (f->mlx == NULL)
 		exit(1);
 	f->win = mlx_new_window(f->mlx, f->width, f->height, "fractol");
