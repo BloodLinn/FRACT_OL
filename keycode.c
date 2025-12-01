@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 16:29:20 by aokur             #+#    #+#             */
-/*   Updated: 2025/11/26 07:15:50 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/01 13:45:43 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	mouse_handler(int button, int x, int y, t_fractol *f)
 	if (button == 4)
 		f->zoom *= 1.1;
 	if (button == 5)
-		f->zoom *= 0.9;
+		f->zoom /= 1.1;
 	render_mandelbrot(f);
 	mlx_put_image_to_window(f->mlx, f->win, f->img.img, 0, 0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:46:31 by aokur             #+#    #+#             */
-/*   Updated: 2025/11/26 07:17:31 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/01 14:24:58 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
-#include "libft.h"
-#include "mlx.h"
+# include "libft.h"
+# include "mlx.h"
 
-#define WIDTH 800
-#define HEIGHT 800
-#define MAX_ITER 100
+# define WIDTH 800
+# define HEIGHT 800
+# define MAX_ITER 100
 
 typedef struct s_img
 {
@@ -43,6 +44,7 @@ typedef struct s_fractol
 	double	shift_x;
 	double	shift_y;
 	int		max_iter;
+	char	*name;
 }	t_fractol;
 
 typedef struct s_pixelpmoc
@@ -57,6 +59,15 @@ typedef struct s_pixelpmoc
 	double	ys;
 }	t_pixelpmoc;
 
+typedef struct s_render
+{
+	int		x;
+	int		y;
+	int		render;
+	int		color;
+	double	re;
+	double	im;
+}	t_render;
 void	init_fractol(t_fractol *f);
 int		key_handler(int keycode, t_fractol *f);
 int		mouse_handler(int button, int x, int y, t_fractol *f);
