@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:37:09 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/02 21:53:52 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/02 22:11:09 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ static int	mandelbrot_iter(t_fractol *f, double *re, double *im)
 	return (i);
 }
 
-static	int	color_iter(int iter)
+int	color_iter(t_fractol *f, int iter)
 {
 	int		color;
 	double	t;
 	int		shade;
 
-	if (iter == MAX_ITER)
+	if (iter == f->max_iter)
 		color = 0x0000000;
 	else
 	{
-		t = (double)iter / MAX_ITER;
+		t = (double)iter / f->max_iter;
 		shade = (int)(255.0 * t);
 		color = (shade << 16) | (shade << 8) | shade;
 	}
@@ -64,8 +64,8 @@ void	render_mandelbrot(t_fractol *f)
 		while (a.y < f->height)
 		{
 			complexip(a.x, a.y, &a.re, &a.im, f);
-			iter = mandelbrot_iter(&a.re, &a.im);
-			color = color_iter(iter);
+			iter = mandelbrot_iter(f, &a.re, &a.im);
+			color = color_iter(f, iter);
 			ft_put_pixel(a.x, a.y, color, f);
 			a.y++;
 		}

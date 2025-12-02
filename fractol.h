@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:46:31 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/02 21:51:35 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/02 22:20:21 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ int		mouse_handler(int button, int x, int y, t_fractol *f);
 int		close_window(t_fractol *f);
 char	*ft_put_pixel(int x, int y, int color, t_fractol *f);
 void	complexip(int x, int y, double *re, double *im, t_fractol *f);
+int		color_iter(t_fractol *f, int iter);
+void	render_fractol(t_fractol *f);
 void	render_mandelbrot(t_fractol *f);
-void	render_julia();
-
+void	render_julia(t_fractol *f);
+void	print_usage(void);
+int		choice_fractal(int ac, char **av, t_fractol *f);
 #endif

@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 21:49:40 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/02 21:55:06 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/02 22:18:12 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,23 @@ static int	julia_iter(t_fractol *f, double x, double y)
 
 void	render_julia(t_fractol *f)
 {
-	int		x;
-	int		y;
-	double	re;
-	double	im;
+	t_render a;
+	double	color;
 	int		iter;
 
-	y = 0;
-	while (y < f->height)
+	a.y = 0;
+	while (a.y < f->height)
 	{
-		x = 0;
-		while (x < f->width)
+		a.x = 0;
+		while (a.x < f->width)
 		{
-			re = (x - f->width / 2.0) * (4.0 / f->width) / f->zoom + f->shift_x;
-			im = (y - f->height / 2.0) * (4.0 / f->height) / f->zoom + f->shift_y;
-			iter = julia_iter(f, re, im);
-			my_put_pixel(&f->img, x, y, get_color(iter, f->max_iter));
-			x++;
+			a.re = (a.x - f->width / 2.0) * (4.0 / f->width) / f->zoom + f->shift_x;
+			a.im = (a.y - f->height / 2.0) * (4.0 / f->height) / f->zoom + f->shift_y;
+			iter = julia_iter(f, a.re, a.im);
+			color = color_iter(f, iter);
+			ft_put_pixel(a.x, a.y, color, f);
+			a.x++;
 		}
-		y++;
+		a.y++;
 	}
 }
