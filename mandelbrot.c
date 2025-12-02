@@ -6,13 +6,13 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:37:09 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/01 14:30:31 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/02 21:53:52 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	mandelbrot_iter(double *re, double *im)
+static int	mandelbrot_iter(t_fractol *f, double *re, double *im)
 {
 	int			i;
 	double		zr;
@@ -23,7 +23,7 @@ int	mandelbrot_iter(double *re, double *im)
 	zr = 0.0;
 	zi = 0.0;
 	i = 0;
-	while (i < MAX_ITER && (zr * zr + zi * zi) <= 4.0)
+	while (i < f->max_iter && (zr * zr + zi * zi) <= 4.0)
 	{
 		zr_tmp = (zr * zr) - (zi * zi);
 		zi_tmp = (2 * zr * zi);
@@ -41,7 +41,7 @@ static	int	color_iter(int iter)
 	int		shade;
 
 	if (iter == MAX_ITER)
-		color = 0x00FFFF;
+		color = 0x0000000;
 	else
 	{
 		t = (double)iter / MAX_ITER;
@@ -53,22 +53,22 @@ static	int	color_iter(int iter)
 
 void	render_mandelbrot(t_fractol *f)
 {
-	t_render	*a;
-	double		iter;
-	double		color;
+	t_render	a;
+	int			iter;
+	int			color;
 
-	a->x = 0;
-	while (a->x < f->width)
+	a.x = 0;
+	while (a.x < f->width)
 	{
-		a->y = 0;
-		while (a->y < f->height)
+		a.y = 0;
+		while (a.y < f->height)
 		{
-			complexip(a->x, a->y, &a->re, &a->im, f);
-			iter = mandelbrot_iter(&a->re, &a->im);
+			complexip(a.x, a.y, &a.re, &a.im, f);
+			iter = mandelbrot_iter(&a.re, &a.im);
 			color = color_iter(iter);
-			ft_put_pixel(a->x, a->y, a->color, f);
-			a->y++;
+			ft_put_pixel(a.x, a.y, color, f);
+			a.y++;
 		}
-		a->x++;
+		a.x++;
 	}
 }

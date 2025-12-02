@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:46:31 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/01 14:24:58 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/02 21:51:35 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ typedef struct s_fractol
 	double	shift_y;
 	int		max_iter;
 	char	*name;
+	int		type;
+	double	c_re;
+	double	c_im;
 }	t_fractol;
 
 typedef struct s_pixelpmoc
@@ -63,18 +66,18 @@ typedef struct s_render
 {
 	int		x;
 	int		y;
-	int		render;
-	int		color;
+	double		color;
 	double	re;
 	double	im;
 }	t_render;
+
 void	init_fractol(t_fractol *f);
 int		key_handler(int keycode, t_fractol *f);
 int		mouse_handler(int button, int x, int y, t_fractol *f);
 int		close_window(t_fractol *f);
 char	*ft_put_pixel(int x, int y, int color, t_fractol *f);
 void	complexip(int x, int y, double *re, double *im, t_fractol *f);
-int		mandelbrot_iter(double *re, double *im);
 void	render_mandelbrot(t_fractol *f);
+void	render_julia();
 
 #endif
