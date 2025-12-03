@@ -6,25 +6,26 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 17:23:37 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/02 22:20:39 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 13:40:36 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-char	*ft_put_pixel(int x, int y, int color, t_fractol *f)
+char	*ft_put_pixel(int color, t_fractol *f, t_render a)
 {
 	char	*pixel;
-	pixel = f->img.addr + (y * f->img.line_len)
-			+ (x * ((f->img.bpp) / 8));
-	*(unsigned int *)pixel = color;
-	return(pixel);
+
+	pixel = f->img.addr + (a.y * f->img.line_len)
+		+ (a.x * ((f->img.bpp) / 8));
+	*(unsigned int *) pixel = color;
+	return (pixel);
 }
 
-void	complexip(int x, int y, double *re, double *im, t_fractol *f)
+void	complexip(double *re, double *im, t_fractol *f, t_render a)
 {
-	*re = (x - f->width / 2.0) / (0.5 * f->zoom * f->width) + f->shift_x;
-	*im = (y - f->height / 2.0) / (0.5 * f->zoom * f->height) + f->shift_y;
+	*re = (a.x - f->width / 2.0) / (0.5 * f->zoom * f->width) + f->shift_x;
+	*im = (a.y - f->height / 2.0) / (0.5 * f->zoom * f->height) + f->shift_y;
 }
 
 void	render_fractol(t_fractol *f)

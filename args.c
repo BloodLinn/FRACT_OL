@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 22:00:47 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/02 22:28:29 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 13:25:32 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	run_mandelbrot(t_fractol *f);
 static void	run_julia(int ac, char **av, t_fractol *f);
+
 void	print_usage(void)
 {
 	ft_putstr_fd("Usage:\n", 2);
@@ -23,13 +24,12 @@ void	print_usage(void)
 	exit(1);
 }
 
-
 int	choice_fractal(int ac, char **av, t_fractol *f)
 {
 	if (ac < 2)
 		print_usage();
 	if (!ft_strncmp(av[1], "mandelbrot", 10) && ac == 2)
-		ren_mandelbrot(f);
+		run_mandelbrot(f);
 	else if (!ft_strncmp(av[1], "julia", 5) && (ac == 2 || ac == 4))
 		run_julia(ac, av, f);
 	else

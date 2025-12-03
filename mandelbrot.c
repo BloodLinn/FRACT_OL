@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:37:09 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/02 22:11:09 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 13:28:57 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ void	render_mandelbrot(t_fractol *f)
 		a.y = 0;
 		while (a.y < f->height)
 		{
-			complexip(a.x, a.y, &a.re, &a.im, f);
+			complexip(&a.re, &a.im, f, a);
 			iter = mandelbrot_iter(f, &a.re, &a.im);
 			color = color_iter(f, iter);
-			ft_put_pixel(a.x, a.y, color, f);
+			ft_put_pixel(color, f, a);
 			a.y++;
 		}
 		a.x++;

@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:46:31 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/02 22:20:21 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 13:38:26 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,20 @@ typedef struct s_pixelpmoc
 
 typedef struct s_render
 {
-	int		x;
-	int		y;
+	int			x;
+	int			y;
 	double		color;
-	double	re;
-	double	im;
+	double		re;
+	double		im;
+	t_pixelpmoc	tmp;
 }	t_render;
 
 void	init_fractol(t_fractol *f);
 int		key_handler(int keycode, t_fractol *f);
 int		mouse_handler(int button, int x, int y, t_fractol *f);
 int		close_window(t_fractol *f);
-char	*ft_put_pixel(int x, int y, int color, t_fractol *f);
-void	complexip(int x, int y, double *re, double *im, t_fractol *f);
+char	*ft_put_pixel(int color, t_fractol *f, t_render a);
+void	complexip(double *re, double *im, t_fractol *f, t_render a);
 int		color_iter(t_fractol *f, int iter);
 void	render_fractol(t_fractol *f);
 void	render_mandelbrot(t_fractol *f);

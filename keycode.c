@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 16:29:20 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/02 22:21:27 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 13:39:24 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	key_handler(int keycode, t_fractol *f)
 	double	move;
 
 	move = 0.1 / f->zoom;
-
 	if (keycode == 65307)
 		close_window(f);
 	if (keycode == 65361)
@@ -44,7 +43,6 @@ int	mouse_handler(int button, int x, int y, t_fractol *f)
 {
 	(void)x;
 	(void)y;
-
 	if (button == 4)
 		f->zoom *= 1.1;
 	if (button == 5)
