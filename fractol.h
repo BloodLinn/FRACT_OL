@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:46:31 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/03 13:38:26 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 15:07:17 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_fractol
 	int		type;
 	double	c_re;
 	double	c_im;
+	int		color_mode;
 }	t_fractol;
 
 typedef struct s_pixelpmoc
@@ -72,11 +73,19 @@ typedef struct s_render
 	t_pixelpmoc	tmp;
 }	t_render;
 
+typedef struct s_atod
+{
+	double	sign;
+	double	intp;
+	double	frac;
+	double	div;
+}	t_atod;
+
 void	init_fractol(t_fractol *f);
 int		key_handler(int keycode, t_fractol *f);
 int		mouse_handler(int button, int x, int y, t_fractol *f);
 int		close_window(t_fractol *f);
-char	*ft_put_pixel(int color, t_fractol *f, t_render a);
+void	ft_put_pixel(int color, t_fractol *f, t_render a);
 void	complexip(double *re, double *im, t_fractol *f, t_render a);
 int		color_iter(t_fractol *f, int iter);
 void	render_fractol(t_fractol *f);
@@ -84,4 +93,8 @@ void	render_mandelbrot(t_fractol *f);
 void	render_julia(t_fractol *f);
 void	print_usage(void);
 int		choice_fractal(int ac, char **av, t_fractol *f);
+double	ft_atod(const char *str);
+int		color_fire(t_fractol *f, int iter);
+int		color_ocean(t_fractol *f, int iter);
+int		color_bands(t_fractol *f, int iter);
 #endif

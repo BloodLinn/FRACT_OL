@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:02:02 by aokur             #+#    #+#             */
-/*   Updated: 2025/07/09 16:05:37 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 14:17:14 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	size_t	i;
-	int		sign;
-	int		result;
+	size_t		i;
+	int			sign;
+	int			result;
 
 	i = 0;
 	result = 0;

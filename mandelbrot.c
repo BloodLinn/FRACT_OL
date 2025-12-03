@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 22:37:09 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/03 13:28:57 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 15:10:31 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,18 @@ int	color_iter(t_fractol *f, int iter)
 	int		shade;
 
 	if (iter == f->max_iter)
-		color = 0x0000000;
-	else
-	{
-		t = (double)iter / f->max_iter;
-		shade = (int)(255.0 * t);
-		color = (shade << 16) | (shade << 8) | shade;
-	}
+		return (0x000000);
+
+	if (f->color_mode == 1)
+		return (color_fire(f, iter));
+	if (f->color_mode == 2)
+		return (color_ocean(f, iter));
+	if (f->color_mode == 3)
+		return (color_bands(f, iter));
+
+	t = (double)iter / f->max_iter;
+	shade = (int)(255.0 * t);
+	color = (shade << 16) | (shade << 8) | shade;
 	return (color);
 }
 

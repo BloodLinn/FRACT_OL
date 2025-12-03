@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 16:29:20 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/03 13:39:24 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 15:09:41 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ int	key_handler(int keycode, t_fractol *f)
 		f->shift_y -= move;
 	if (keycode == 65364)
 		f->shift_y += move;
+	if (keycode == 49)
+		f->color_mode = 1;
+	if (keycode == 50)
+		f->color_mode = 2;
+	if (keycode == 51)
+		f->color_mode = 3;
 	render_fractol(f);
 	mlx_put_image_to_window(f->mlx, f->win, f->img.img, 0, 0);
 	return (0);

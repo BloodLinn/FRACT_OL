@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 22:00:47 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/03 13:25:32 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 14:47:34 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ int	choice_fractal(int ac, char **av, t_fractol *f)
 {
 	if (ac < 2)
 		print_usage();
-	if (!ft_strncmp(av[1], "mandelbrot", 10) && ac == 2)
+	if (!ft_strncmp(av[1], "mandelbrot", 10) && ac == 2
+		&& ft_strlen(av[1]) == 10)
 		run_mandelbrot(f);
-	else if (!ft_strncmp(av[1], "julia", 5) && (ac == 2 || ac == 4))
+	else if (!ft_strncmp(av[1], "julia", 5) && (ac == 2 || ac == 4)
+		&& ft_strlen(av[1]) == 5)
 		run_julia(ac, av, f);
 	else
 		print_usage();
@@ -52,11 +54,12 @@ static void	run_mandelbrot(t_fractol *f)
 static void	run_julia(int ac, char **av, t_fractol *f)
 {
 	f->name = "julia";
+
 	init_fractol(f);
 	if (ac == 4)
 	{
-		f->c_re = ft_atoi(av[2]);
-		f->c_im = ft_atoi(av[3]);
+		f->c_re = ft_atod(av[2]);
+		f->c_im = ft_atod(av[3]);
 	}
 	else
 	{
