@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 15:01:59 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/03 15:28:02 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 15:40:57 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,16 @@ int	color_bands(t_fractol *f, int iter)
 	g = (int)(255 * t);
 	b = 0;
 	return ((r << 16) | (g << 8) | b);
+}
+
+int color_default(t_fractol *f, int iter)
+{
+	int		color;
+	double	t;
+	int		shade;
+
+	t = (double)iter / f->max_iter;
+	shade = (int)(255.0 * t);
+	color = (shade << 16) | (shade << 8) | shade;
+	return (color);
 }

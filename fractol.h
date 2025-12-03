@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:46:31 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/03 15:18:24 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 15:42:39 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,5 @@ double	ft_atod(const char *str);
 int		color_fire(t_fractol *f, int iter);
 int		color_ocean(t_fractol *f, int iter);
 int		color_bands(t_fractol *f, int iter);
+int		color_default(t_fractol *f, int iter);
 #endif

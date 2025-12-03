@@ -39,6 +39,6 @@ fclean: clean
 re:	fclean all
 
 x:
-	norminette $(SRCS) fractol.h
+	norminette $(SRCS) fractol.h $(LIBFT_DIR)
 
 .PHONY: all clean fclean re x
