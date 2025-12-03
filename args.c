@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 22:00:47 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/03 14:47:34 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 15:25:55 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ static void	run_mandelbrot(t_fractol *f)
 static void	run_julia(int ac, char **av, t_fractol *f)
 {
 	f->name = "julia";
-
-	init_fractol(f);
+	init_fractol (f);
 	if (ac == 4)
 	{
 		f->c_re = ft_atod(av[2]);

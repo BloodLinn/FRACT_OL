@@ -38,4 +38,7 @@ fclean: clean
 
 re:	fclean all
 
-.PHONY: all clean fclean re
+x:
+	norminette $(SRCS) fractol.h
+
+.PHONY: all clean fclean re x

@@ -6,7 +6,7 @@
 /*   By: aokur <aokur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:46:31 by aokur             #+#    #+#             */
-/*   Updated: 2025/12/03 15:07:17 by aokur            ###   ########.fr       */
+/*   Updated: 2025/12/03 15:18:24 by aokur            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include "libft.h"
 # include "mlx.h"
 
-# define WIDTH 800
-# define HEIGHT 800
-# define MAX_ITER 100
+# define WIDTH 400
+# define HEIGHT 400
+# define MAX_ITER 50
 
 typedef struct s_img
 {

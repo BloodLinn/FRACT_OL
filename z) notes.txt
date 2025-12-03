@@ -1,8 +1,0 @@
-bpp = 32 (mlx in kendisinden geliyor)
-byte_per_pixel = bpp / 8 = 32 / 8 = 4
-line len = width * byte_per_pixel = 800 * 4 = 3200;
-
-3x3 lük bir küpün addrleri:
-addr + 0	addr + 4	addr + 8
-addr + 12	addr + 16	addr + 20
-addr + 24	addr + 28	addr+ 32
